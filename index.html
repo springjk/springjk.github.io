@@ -307,77 +307,27 @@
 
       
         
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Hi，JAVA！</p>
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Hi，JAVA！</p>
 <p>JAVA 的项目通常都比较繁琐，为了标准化流程与简易化部署，本项目根据官方示例构建一套简易的 JAVA 的开发／运行环境，build，ship，run！</p>
 <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
-<li><a href="https://git-scm.com/downloads" target="_blank" rel="external">Git</a></li>
-<li><a href="https://www.docker.com/products/docker/" target="_blank" rel="external">Docker</a> <code>&gt;= 1.12</code></li>
-<li><a href="https://www.docker.com/products/docker/" target="_blank" rel="external">Docker-Compose</a> <code>Windows/macOS 版 Docker 已包含</code></li>
+<li><a href="https://git-scm.com/downloads">Git</a></li>
+<li><a href="https://www.docker.com/products/docker/">Docker</a> <code>&gt;= 1.12</code></li>
+<li><a href="https://www.docker.com/products/docker/">Docker-Compose</a> <code>Windows/macOS 版 Docker 已包含</code></li>
 </ul>
 <blockquote>
-<p>由于众所周知的原因，梯子不够坚固的童鞋请使用 <a href="http://get.daocloud.io/" target="_blank" rel="external">国内镜像</a> 以及 <a href="https://www.daocloud.io/mirror.html#accelerator-doc" target="_blank" rel="external">加速器</a>。</p>
+<p>由于众所周知的原因，梯子不够坚固的童鞋请使用 <a href="http://get.daocloud.io/">国内镜像</a> 以及 <a href="https://www.daocloud.io/mirror.html#accelerator-doc">加速器</a>。</p>
 </blockquote>
 <h2 id="快速体验"><a href="#快速体验" class="headerlink" title="快速体验"></a>快速体验</h2><ol>
 <li><code>$ git clone https://github.com/springjk/java-in-docker</code></li>
 <li><code>$ cd java-in-docker</code></li>
 <li><code>$ docker-compose up</code></li>
-<li>访问 <a href="http://127.0.0.1" target="_blank" rel="external">http://127.0.0.1</a></li>
+<li>访问 <a href="http://127.0.0.1">http://127.0.0.1</a></li>
 </ol>
-<p><img src="http://oac57xnsh.bkt.clouddn.com/java-in-docker.jpg" alt="java-in-docker"></p>
-<p>运维命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose <span class="built_in">help</span>   <span class="comment"># docker-compose 命令帮助</span></div><div class="line">docker-compose up     <span class="comment"># 创建并启动 docker 编排服务</span></div><div class="line">docker-compose down   <span class="comment"># 停止并移除 docker 编排服务 (更改配置文件时建议使用)</span></div><div class="line">docker-compose <span class="built_in">exec</span> java-maven-tomcat bash <span class="comment"># ssh 登入 java 容器</span></div></pre></td></tr></table></figure>
-<h2 id="加载项目"><a href="#加载项目" class="headerlink" title="加载项目"></a>加载项目</h2><p>上述方式为体验项目使用，运行的为 <code>code</code> 目录下的示例代码，实际使用中我们需要加载自己项目的代码，这里有两种方式：挂载项目目录和导入到项目中，选择一种你喜欢的即可。</p>
-<h3 id="挂载项目目录"><a href="#挂载项目目录" class="headerlink" title="挂载项目目录"></a>挂载项目目录</h3><ol>
-<li>修改 <code>docker-compose.yml</code> 中的代码挂载目录为你源代码目录（pom.xml 的父级目录）</li>
-<li><code>$ docker-compose up</code></li>
-</ol>
-<h3 id="导入到项目中"><a href="#导入到项目中" class="headerlink" title="导入到项目中"></a>导入到项目中</h3><ol>
-<li><code>cd {your-project-path}</code></li>
-<li><code>git submodule add https://github.com/springjk/java-in-docker</code></li>
-<li><code>$ cd java-in-docker</code></li>
-<li><code>$ docker-compose up</code></li>
-</ol>
-<h2 id="数据库信息"><a href="#数据库信息" class="headerlink" title="数据库信息"></a>数据库信息</h2><ul>
-<li><strong>DB_HOST</strong> : <code>mysql</code></li>
-<li><strong>DB_PORT</strong> : <code>3306</code></li>
-<li><strong>DB_NAME</strong> : <code>docker</code></li>
-<li><strong>DB_USER_NAME</strong> : <code>root</code></li>
-<li><strong>DB_USER_PWD</strong> : <code>docker</code></li>
-</ul>
-<p>此处的数据库连接地址 <code>DB_HOST</code> 值为 <code>mysql</code> 是因为名为 <code>java-maven-tomcat</code> 的容器 <code>link</code> 了名为 <code>mysql</code> 的容器，故 <code>java-maven-tomcat</code> 容器中会在自己的 <code>/etc/hosts</code> 中添加一条 <code>1xx.xx.xx.xx   mysql</code> 的 host，这会将 <code>http://mysql</code> 这个地址指向 <code>mysql</code> 容器的实际内网地址，等效于常见的 <code>http://localhost</code> 。</p>
-<h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><p>容器内的数据会随着容器的销毁而丢失，所以需要配置 <code>docker-compose.yml</code> 文件将以下目录同步到你的物理机目录进行持久化：</p>
-<ul>
-<li><code>/root/.m2</code> Maven 的 jar 包缓存目录，挂载后将无需每次构建时重新下载。</li>
-<li><code>/var/lib/mysql</code> MySQL 的文件存放目录，必须挂载，否则销毁容器后数据丢失。</li>
-<li><code>/usr/local/tomcat/logs</code> Tomcat 的日志目录，挂载后查看日志无须进入容器内部。</li>
-</ul>
-<p>Windows 下挂载目录写法示例：<code>d:/project/</code>，macOS 与 Linux 下如挂载目录后出现无法写入则是权限问题，ssh 登陆容器后对文件夹给与写入权限即可。</p>
-<h2 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h2><p>数据库信息，暴露端口等信息都在 <code>docker-compose.yml</code> 中配置，一切调试完成后可在启动命令后添加 <code>-d</code> 参数，让其后台启动，此时如果想实时查看启动日志可以使用 <code>docker-compose logs -f</code> 进行查看。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 后台启动运行</span></div><div class="line">$ docker-compose up <span class="_">-d</span></div><div class="line"></div><div class="line"><span class="comment"># 跟踪查看启动日志</span></div><div class="line">$ docker-compose logs <span class="_">-f</span></div></pre></td></tr></table></figure>
-<h2 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h2><ul>
-<li><strong>JAVA</strong> ：<code>1.8</code></li>
-<li><strong>MySQL</strong> ：<code>5.7</code></li>
-<li><strong>Maven</strong> ：<code>3.3.9</code></li>
-<li><strong>Tomcat</strong> ：<code>8.5.3</code></li>
-</ul>
-<p>版本信息可在 <code>Dockerfile</code> 中进行修改，修改 <code>Dockerfile</code> 后需要将 <code>docker-compose</code> 中的构建方式改为构建本地镜像：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 免构建镜像</span></div><div class="line">  <span class="comment">#image: registry.cn-hangzhou.aliyuncs.com/springjk/java-maven-tomcat</span></div><div class="line"><span class="comment"># 构建本地镜像</span></div><div class="line">  build: ./java-maven-tomcat</div></pre></td></tr></table></figure>
-<p>修改完成后启动时需要重新构建镜像：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ docker-compose up --build</div></pre></td></tr></table></figure>
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">├── LICENSE</div><div class="line">├── README.md</div><div class="line">├── code # JAVA 演示代码</div><div class="line">│   ├── pom.xml</div><div class="line">│   └── src</div><div class="line">│       ├── main</div><div class="line">│       │   ├── java</div><div class="line">│       │   │   └── com</div><div class="line">│       │   │       └── bingo</div><div class="line">│       │   │           └── helloworld</div><div class="line">│       │   │               └── HelloWorld.java</div><div class="line">│       │   ├── resources</div><div class="line">│       │   └── webapp</div><div class="line">│       │       ├── META-INF</div><div class="line">│       │       │   └── MANIFEST.MF</div><div class="line">│       │       └── WEB-INF</div><div class="line">│       │           ├── lib</div><div class="line">│       │           └── web.xml</div><div class="line">│       └── test</div><div class="line">│           ├── java</div><div class="line">│           └── resources</div><div class="line">├── data # 容器数据挂载目录</div><div class="line">│   ├── maven</div><div class="line">│   └── mysql</div><div class="line">├── docker-compose.yml # docker-compose 配置文件</div><div class="line">├── java-maven-tomcat</div><div class="line">│   ├── Dockerfile # JAVA-Tomcat-Maven 构建文件</div><div class="line">│   └── build.sh</div><div class="line">├── log # 容器日志挂载目录</div><div class="line">│   └── tomcat</div><div class="line">└── mysql</div><div class="line">    └── Dockerfile # MySQL 构建文件</div></pre></td></tr></table></figure>
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><p><code>Dockerfile --&gt;(build)–&gt; Image --&gt;(run)–&gt; Container</code></p>
-<ol>
-<li>构建 MySQL 镜像</li>
-<li>构建 JAVA-Tomcat-Maven 镜像</li>
-<li>挂载 MySQL 数据目录并启动 MySQL 容器</li>
-<li>挂载 JAVA 代码目录并启动 JAVA-Tomcat-Maven 容器</li>
-<li>执行 Maven 的代码构建脚本 <code>build.sh</code> 生成 WAR 包并放入 Tomcat 工作目录</li>
-<li>启动 Tomcat</li>
-</ol>
-<p>更多请参考 <a href="https://docs.docker.com/" target="_blank" rel="external">Docker Docs</a>。</p>
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>MIT</p>
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/08/JAVA的Docker开发部署环境/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
