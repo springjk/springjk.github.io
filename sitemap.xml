@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://80to.me/2016/12/05/%E5%BF%AB%E9%80%9F%E5%88%9B%E5%BB%BAPHP%E7%8E%AF%E5%A2%83/</loc>
+    
+    <lastmod>2016-12-05T07:50:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://80to.me/2016/11/30/Docker%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2016-12-05T07:49:58.000Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://80to.me/2016/07/08/JAVA%E7%9A%84Docker%E5%BC%80%E5%8F%91%E9%83%A8%E7%BD%B2%E7%8E%AF%E5%A2%83/</loc>
     
     <lastmod>2016-12-05T07:49:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://80to.me/2016/12/05/%E5%BF%AB%E9%80%9F%E5%88%9B%E5%BB%BAPHP%E7%8E%AF%E5%A2%83/</loc>
-    
-    <lastmod>2016-12-05T07:49:17.000Z</lastmod>
     
   </url>
   
